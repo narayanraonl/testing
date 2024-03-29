@@ -19,7 +19,7 @@ const fetch = require("node-fetch");
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
-mongoose.connect("mongodb://127.0.0.1:27017/recipeDB");
+mongoose.connect(process.env.MONGO_URL).then(()=>console.log("Connected to MongoDB")).catch(console.error);
 const recipeSchema= new mongoose.Schema({
     title:String,
     ingrediants:String,
